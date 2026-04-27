@@ -12,7 +12,7 @@ void setup() {
   Serial.begin(9600);
 
   pinMode(tcs_led_pin, OUTPUT);
-  digitalWrite(tcs_led_pin, HIGH); // sensör LED’i açık
+  digitalWrite(tcs_led_pin, HIGH); 
 
   if (tcs.begin()) {
     Serial.println("TCS34725 bulundu!");
