@@ -4,14 +4,14 @@
 #define IN2 9
 #define IN3 2
 #define IN4 3
-
+ 
 #define trigPin 6
 #define echoPin 7
 
 int hiz = 170;
 
-#define SAFE_DISTANCE 25
-#define DANGER_DISTANCE 10
+#define guvenli_mesafe 25
+#define riskli_mesafe 10
 
 float mesafe;
 
@@ -93,10 +93,10 @@ void dur() {
 void loop() {
 
   mesafe = olcMesafe();
-  if (mesafe > SAFE_DISTANCE) {
+  if (mesafe > guvenli_mesafe) {
     ileri(hiz);
   }
-  else if (mesafe <= SAFE_DISTANCE && mesafe > DANGER_DISTANCE) {
+  else if (mesafe <= guvenli_mesage && mesafe > riskli_mesafe) {
 
     dur();
     delay(80);
