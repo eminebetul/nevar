@@ -30,18 +30,13 @@ void setup() {
 
   int mod_deger = digitalRead(mod_pin);
 
-  if (mod_deger == HIGH) {
-    kirmizi_takim = true;
-  } else {
-    kirmizi_takim = false;
-  }
+  kirmizi_takim = (mod_deger == HIGH);
 
   digitalWrite(kirmizi_led, kirmizi_takim ? HIGH : LOW);
   digitalWrite(mavi_led, kirmizi_takim ? LOW : HIGH);
 }
 
 void loop() {
-  void loop() {
   servo1.write(0);
   delay(1000);
   servo1.write(90);
@@ -62,5 +57,4 @@ void loop() {
   delay(1000);
   servo3.write(180);
   delay(1000);
-}
 }

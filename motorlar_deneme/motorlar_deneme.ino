@@ -4,7 +4,6 @@
 #define IN2 9
 #define IN3 2
 #define IN4 3
-int hiz=170;
 
 void setup() {
   pinMode(ENA, OUTPUT);
@@ -13,8 +12,9 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
-}
 
+  dur();
+}
 
 void ileri(int hiz) {
   analogWrite(ENA, hiz);
@@ -59,6 +59,11 @@ void sol(int hiz) {
 void dur() {
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);
+
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
 }
 
 void loop() {

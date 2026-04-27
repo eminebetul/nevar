@@ -25,8 +25,9 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-}
 
+  dur();
+}
 
 float olcMesafe() {
   long sure;
@@ -38,11 +39,12 @@ float olcMesafe() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  sure = pulseIn(echoPin, HIGH);
+  sure = pulseIn(echoPin, HIGH, 30000); // timeout eklendi
+
+  if (sure == 0) return 999; // ölçüm yoksa güvenli uzaklık
 
   return sure * 0.0343 / 2;
 }
-
 
 void ileri(int hiz) {
   analogWrite(ENA, hiz);
@@ -87,33 +89,37 @@ void sol(int hiz) {
 void dur() {
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);
-}
 
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
 
 void loop() {
 
   mesafe = olcMesafe();
+
   if (mesafe > guvenli_mesafe) {
     ileri(hiz);
   }
-  else if (mesafe <= guvenli_mesage && mesafe > riskli_mesafe) {
 
+  else if (mesafe > riskli_mesafe) {
     dur();
     delay(80);
 
     sag(hiz);
-    delay(400);
+    delay(300);
   }
 
   else {
-    
     dur();
     delay(80);
 
     geri(hiz);
-    delay(500);
+    delay(400);
 
     sag(hiz);
-    delay(500);
+    delay(400);
   }
 }
